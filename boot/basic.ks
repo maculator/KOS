@@ -17,6 +17,9 @@ copypath("0:/basic/deorbit.ks","1:/deorbit.ks").
 list files.
 print " ".
 wait .3.
+print "files loaded.".
+print " ".
+wait .3.
 print "loading functions.".
 run functions.
 wait .5.
