@@ -2,9 +2,9 @@
 //
 //	sets up terminal.
 //	loads	script/basic/:	functions.ks,
-//						start.ks,
-//						orbit.ks,
-//						deorbit.ks	to the vessel.
+//							start.ks,
+//							orbit.ks,
+//							deorbit.ks	to the vessel.
 //	prints brief help to the terminal.
 
 //setting up terminal.
