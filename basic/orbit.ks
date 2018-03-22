@@ -12,15 +12,16 @@ wait .3.
 print "steering locked.".
 print " ".
 say("steering locked").
+print ">>> USER HAS TO CONTROL THROTTLE UP <<<".
+print ">>> PROGRAM WILL CUT THROTTLE ONLY  <<<".
 sas off.
 set mnode to nextnode.
-lock ap to ship:apoapsis.
 lock steering to mnode.
-wait until ship:periapsis > .9 * ap.
+wait until ship:periapsis > 60000.
 lock throttle to .2.
-lock steering to retrograde.
-wait until ship:periapsis > ap.
+wait until ship:periapsis > 70000.
 lock throttle to 0.
+wait 1.
 set ship:control:pilotmainthrottle to 0.
 say("steering unlocked").
 print "steering unlocked.".

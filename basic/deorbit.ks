@@ -30,7 +30,11 @@ FROM {local x is 0.} UNTIL x = 10 STEP {set x to x + 1.} DO {
 	stage.
 	wait .2.
 }
-print "coasting to < 5000.".
+print "pointing retrograde".
+wait .3.
+print "until altitude".
+wait .3.
+print "is below 5000m".
 print " ".
 wait until alt:radar < 5000.
 set ship:control:pilotmainthrottle to 0.

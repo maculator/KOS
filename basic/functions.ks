@@ -1,6 +1,6 @@
 FUNCTION say {
 	parameter text.
-	hudtext("KOS: " + text, 5, 2, 30, green, false).
+	hudtext("KOS: " + text, 5, 2, 30, green, true).
 }
 FUNCTION stagecheck {
 	WHEN ship:maxthrust < 0.01 THEN {
@@ -15,7 +15,7 @@ FUNCTION stagecheck {
 		}
 	}
 }
-FUNCTION asc {
+GLOBAL FUNCTION asc {
 	parameter talt, dir, ang.
 	UNTIL ship:altitude > talt {
 		lock steering to heading(dir, ang).
@@ -25,10 +25,10 @@ FUNCTION asc {
 		}
 		wait .1.
 	}
-	print "passed " + 0.1 * (round(talt)) + "km.".
+	print "passed " + .001 * (round(talt)) + "km.".
 	print " ".
 }
-FUNCTION start {
+GLOBAL FUNCTION start {
 	parameter dir.
 	sas off.
 	asc(1000,	dir, 90).
