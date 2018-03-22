@@ -1,34 +1,31 @@
-print "orbit.ks running now.".
-print " ".
-wait .3.
-print "loading functions.".
-run functions.
-wait .5.
-print "functions loaded.".
-print " ".
-wait .3.
-print "SAS off.".
-wait .3.
-print "steering locked.".
-print " ".
-say("steering locked").
-print ">>> USER HAS TO CONTROL THROTTLE UP <<<".
-print ">>> PROGRAM WILL CUT THROTTLE ONLY  <<<".
-sas off.
+//	script/basic/orbit.ks
+//
+//	holds ship pointed to node and cuts throttle when orbit is ~circular.
+
+
+//setting up variables.
 set mnode to nextnode.
+set apo to ship:apoapsis.
+
+//locking controls.
+sas off.
 lock steering to mnode.
-wait until ship:periapsis > 60000.
+
+print "steering locked on node.".
+print "remember to THROTTLE UP.".
+
+//recalibrating on closing in on AP.
+wait until ship:periapsis >= apo * .9.
 lock throttle to .2.
-wait until ship:periapsis > 70000.
+set apo to ship:apoapsis.
+
+//finalizing.
+wait until ship:periapsis >= apo * .99.
 lock throttle to 0.
+
+//handing back controls.
 wait 1.
 set ship:control:pilotmainthrottle to 0.
-say("steering unlocked").
-print "steering unlocked.".
-wait .3.
-print "SAS on.".
-print " ".
-wait .3.
-print ">>> to continue run deorbit.ks <<<".
-print " ".
 sas on.
+
+print "orbit achieved.".

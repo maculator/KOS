@@ -1,46 +1,22 @@
-print "deorbit.ks running now.".
-print " ".
-wait .3.
-print "loading functions.".
-run functions.
-wait .5.
-print "functions loaded.".
-print " ".
-wait .3.
-print "SAS off.".
-wait .3.
-print "steering locked.".
-print " ".
-say("steering locked").
+//	script/basic/deorbit.ks
+//
+//	only locks steering to retrograde until altitude is below 8km.
+
+//locking steering to retrograde.
 sas off.
 lock steering to ship:retrograde.
-say("steering locked").
-wait 10.
-print "burning.".
-print " ".
-lock throttle to 1.
-UNTIL ship:liquidfuel < 0.1 {
-	IF stage:liquidfuel < 0.1 {wait 1. stage.}
-	wait .2.
-}
-print "hitting stage 10x.".
-print " ".
-lock throttle to 0.
-FROM {local x is 0.} UNTIL x = 10 STEP {set x to x + 1.} DO {
-	stage.
-	wait .2.
-}
-print "pointing retrograde".
-wait .3.
-print "until altitude".
-wait .3.
-print "is below 5000m".
-print " ".
-wait until alt:radar < 5000.
+
+print "steering locked to retrograde.".
+print "please perform deorbit burn.".
+print "please stage chutes.".
+print "don't forget antennas, etc..".
+print "steering will unlock below 8000m.".
+
+//waiting.
+wait until alt:radar < 8000.
+
+//unlocking steering
 set ship:control:pilotmainthrottle to 0.
-say("steering unlocked").
+
 print "steering unlocked.".
-wait .3.
-print ">>> landing soon <<<".
-print " ".
-say("landing soon").
+print "bye bye.".
